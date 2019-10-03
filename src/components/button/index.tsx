@@ -14,6 +14,7 @@ interface WrapperProps {
 const Wrapper = styled.button<WrapperProps>`
   font-family: 'Nunito Sans', sans-serif;
   width: ${(props) => props.block && '100%'};
+  min-width: 100px;
   display: flex;
   position: relative;
   justify-content: center;
@@ -27,11 +28,11 @@ const Wrapper = styled.button<WrapperProps>`
   font-size: 14px;
   border-radius: 1000rem;
   border: none;
-  background: #1DB954;
+  background: #F9639F;
   transition: all 0.2s ease-in-out 0s;
 
   &:hover {
-    background: #1ED76A;
+    background: #F971A7;
   }
 
   &:focus {
