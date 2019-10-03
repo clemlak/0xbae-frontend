@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import Button from '../button';
 
-const Title = styled.h1`
+const Logo = styled.h1`
   font-family: 'Nunito Sans';
   font-weight: 700;
   color: ${(props) => props.theme.colors.main};
@@ -20,15 +20,13 @@ const Navbar = styled(Box)`
 `;
 
 const Header = () => (
-  <Flex px={5} py={3} flexWrap="wrap">
+  <Flex mx={[1, 3, 5]} mt={2} mb={[1, 2, 3]} flexWrap="wrap">
     <Box width={1 / 2}>
-      <Title>
+      <Logo>
         <span role="img" aria-label="logo">
-          🍑
+          🍑 0xbae
         </span>
-        {' '}
-        0xbae
-      </Title>
+      </Logo>
     </Box>
     <Navbar width={1 / 2}>
       <Button
