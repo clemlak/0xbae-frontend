@@ -5,6 +5,8 @@ import {
 } from 'reflexbox';
 import styled from 'styled-components';
 
+import Button from '../button';
+
 const Title = styled.h1`
   font-family: 'Nunito Sans';
   font-weight: 900;
@@ -15,13 +17,19 @@ const Header = () => (
   <Flex>
     <Box width={1 / 2} p={3}>
       <Title>
+        <span role="img" aria-label="logo">
+          🍑
+        </span>
+        {' '}
         0xbae
       </Title>
     </Box>
-    <Box width={1 / 2}>
-      <h1>
-        Hello
-      </h1>
+    <Box width={1 / 2} p={3}>
+      <Button
+        onClick={() => {}}
+      >
+        Upload
+      </Button>
     </Box>
   </Flex>
 );
