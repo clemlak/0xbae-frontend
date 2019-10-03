@@ -6,12 +6,14 @@ import {
 import styled from 'styled-components';
 
 const Title = styled.h1`
-
+  font-family: 'Nunito Sans';
+  font-weight: 900;
+  color: #F9639F;
 `;
 
 const Header = () => (
   <Flex>
-    <Box width={1 / 2}>
+    <Box width={1 / 2} p={3}>
       <Title>
         0xbae
       </Title>

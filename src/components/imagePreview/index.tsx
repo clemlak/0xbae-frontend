@@ -15,7 +15,9 @@ const Wrapper = styled.div<WrapperProps>`
   background-image: ${(props) => `url(${props.image})`};
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  border-radius: 15px;
+  background-color: #eee;
 `;
 
 const ImagePreview = (props: Props) => {

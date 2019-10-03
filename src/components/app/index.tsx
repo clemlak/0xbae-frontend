@@ -3,13 +3,25 @@ import {
   Flex,
   Box,
 } from 'reflexbox';
+import {
+  createGlobalStyle,
+} from 'styled-components';
 
 import Header from '../header';
 import ImagePreview from '../imagePreview';
 
 interface ImageInterface {
+  /* eslint-disable-next-line camelcase */
   download_url: string
 }
+
+const GlobalStyle = createGlobalStyle`
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+`;
 
 const App = () => {
   const [images, setImages] = React.useState([]);
@@ -25,6 +37,7 @@ const App = () => {
 
   return (
     <>
+      <GlobalStyle />
       <Header />
       <Flex flexWrap="wrap">
         {images.map((image: ImageInterface) => (
@@ -39,6 +52,6 @@ const App = () => {
       </Flex>
     </>
   );
-}
+};
 
 export default App;
