@@ -10,8 +10,6 @@ storiesOf('Modal', module)
     <Modal
       title="Hello"
       toggle={action('Close')}
-      buttonAction={action('Okay')}
-      buttonText="Okay"
       isOpen
     >
       <h1>

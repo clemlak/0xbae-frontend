@@ -5,15 +5,12 @@ import {
   Box,
 } from 'reflexbox/styled-components';
 
-import Button from '../button';
 import CloseIcon from '../../assets/img/close_black.svg';
 
 interface Props {
   isOpen: boolean,
   title: string,
   children: string | JSX.Element | JSX.Element[],
-  buttonAction: Function,
-  buttonText: string,
   toggle: Function,
 }
 
@@ -65,8 +62,6 @@ function Modal(props: Props) {
   const {
     children,
     isOpen,
-    buttonAction,
-    buttonText,
     title,
     toggle,
   } = props;
@@ -87,13 +82,6 @@ function Modal(props: Props) {
         <Flex>
           <Box p={3} width={1}>
             {children}
-          </Box>
-        </Flex>
-        <Flex>
-          <Box p={3} width={1}>
-            <Button onClick={() => buttonAction()} block>
-              {buttonText}
-            </Button>
           </Box>
         </Flex>
       </Content>

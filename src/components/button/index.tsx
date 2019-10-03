@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 interface Props {
+  disabled?: boolean,
   secondary?: boolean,
   block?: boolean,
   onClick: Function,
@@ -9,6 +10,7 @@ interface Props {
 }
 
 interface WrapperProps {
+  disabled?: boolean,
   block: boolean,
   secondary: boolean
 }
@@ -32,9 +34,17 @@ const Wrapper = styled.button<WrapperProps>`
   border: none;
   transition: all 0.2s ease-in-out 0s;
 
+  color: ${(props) => (props.disabled && '#fff')};
+  background-color: ${(props) => (props.disabled && '#aaa')};
+  cursor: ${(props) => (props.disabled ? 'no-drop' : 'pointer')};
+
   &:hover {
     color: #fff;
     background-color: ${(props) => (props.secondary ? '#f9639f' : '#fa7fb0')};
+
+    color: ${(props) => (props.disabled && '#fff')};
+    background-color: ${(props) => (props.disabled && '#aaa')};
+    cursor: ${(props) => (props.disabled ? 'no-drop' : 'pointer')};
   }
 
   &:focus {
@@ -48,6 +58,7 @@ function Button(props: Props) {
     onClick,
     block = false,
     secondary = false,
+    disabled = false,
   } = props;
 
   return (
@@ -55,6 +66,7 @@ function Button(props: Props) {
       onClick={() => onClick()}
       block={block}
       secondary={secondary}
+      disabled={disabled}
     >
       {children}
     </Wrapper>

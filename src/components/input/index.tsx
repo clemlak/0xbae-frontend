@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 interface InputProps {
+  large?: boolean,
   block?: boolean,
   value?: number,
   placeholder?: string,
@@ -16,14 +17,15 @@ const InputStyled = styled.input<InputProps>`
   padding-right: 0.75rem;
   height: 2.5rem;
   color: #000;
-  font-size: 14px;
+  font-size: ${(props) => (props.large ? '45px' : '14px')};
+  font-weight: ${(props) => (props.large ? '700' : '400')};
   line-height: 24px;
   border-radius: 6px;
   border-width: 1px;
   border-style: solid;
-  border-image: initial;
   border-color: #000;
   background: #fff;
+  border: ${(props) => (props.large && 'none')};
 
   &:focus {
     outline: none;
@@ -35,7 +37,8 @@ const Input = (inputProps: InputProps) => {
     value,
     onChange,
     placeholder,
-    block,
+    block = false,
+    large = false,
   } = inputProps;
 
   return (
@@ -44,6 +47,7 @@ const Input = (inputProps: InputProps) => {
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
       placeholder={placeholder}
       block={block}
+      large={large}
     />
   );
 };

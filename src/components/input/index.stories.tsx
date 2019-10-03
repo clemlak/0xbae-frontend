@@ -11,4 +11,26 @@ storiesOf('Input', module)
       onChange={() => action('Updated')}
       placeholder="How much?"
     />
+  ))
+  .add('standard block', () => (
+    <Input
+      onChange={() => action('Updated')}
+      placeholder="How much?"
+      block
+    />
+  ))
+  .add('large', () => (
+    <Input
+      onChange={() => action('Updated')}
+      placeholder="How much?"
+      large
+    />
+  ))
+  .add('large block', () => (
+    <Input
+      onChange={() => action('Updated')}
+      placeholder="How much?"
+      large
+      block
+    />
   ));
