@@ -6,7 +6,13 @@ import ImageViewer from '../imageViewer';
 import TipModal from '../tipModal';
 
 interface GalleryProps {
-  images: string[]
+  posts: Post[]
+}
+
+interface Post {
+  src: string,
+  model: string,
+  address: string
 }
 
 const GalleryStyled = styled.div`
@@ -63,23 +69,30 @@ const ButtonWrapper = styled.div`
 
 const Gallery = (galleryProps: GalleryProps) => {
   const {
-    images,
+    posts,
   } = galleryProps;
 
   const [isImageViewerOpen, toggleImageViewer] = React.useState(false);
   const [imageViewerTarget, setImageViewerTarget] = React.useState<string>('');
 
   const [isTipModalOpen, toggleTipModal] = React.useState(false);
+  const [model, setModel] = React.useState<string>('');
 
   function handleViewClick(imageTarget: string) {
     setImageViewerTarget(imageTarget);
     toggleImageViewer(true);
   }
 
+  function handleTipClick(modelTarget: string) {
+    setModel(modelTarget);
+    toggleTipModal(true);
+  }
+
   return (
     <GalleryStyled>
       <TipModal
         isOpen={isTipModalOpen}
+        model={model}
         toggle={() => toggleTipModal(false)}
       />
       <ImageViewer
@@ -87,17 +100,17 @@ const Gallery = (galleryProps: GalleryProps) => {
         isOpen={isImageViewerOpen}
         toggle={() => toggleImageViewer(false)}
       />
-      {images.map((image: string) => (
-        <GalleryItem key={image}>
-          <GalleryImage src={image} alt={image} />
+      {posts.map((post: Post) => (
+        <GalleryItem key={post.model}>
+          <GalleryImage src={post.src} alt={post.model} />
           <GalleryItemInfo>
             <ButtonWrapper>
-              <Button onClick={() => handleViewClick(image)} secondary>
+              <Button onClick={() => handleViewClick(post.src)} secondary>
                 View
               </Button>
             </ButtonWrapper>
             <ButtonWrapper>
-              <Button onClick={() => toggleTipModal(true)}>
+              <Button onClick={() => handleTipClick(post.model)}>
                 Tip
               </Button>
             </ButtonWrapper>

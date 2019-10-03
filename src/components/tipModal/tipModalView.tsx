@@ -16,6 +16,7 @@ interface TipModalProps {
   isOpen: boolean,
   toggle: Function,
   tip: Function,
+  model: string,
 }
 
 const Text = styled.p`
@@ -46,6 +47,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
     toggle,
     tip,
     isOpen,
+    model,
   } = tipModalProps;
 
   const [activeToken, setActiveToken] = React.useState<string>('');
@@ -73,7 +75,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
 
   return (
     <Modal
-      title="Tip some model"
+      title={`Tipping ${model}`}
       isOpen={isOpen}
       toggle={toggle}
     >
