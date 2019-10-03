@@ -38,6 +38,7 @@ const Amount = styled.p`
 const TokensWrapper = styled(Flex)`
   justify-content: center;
   text-align: center;
+  margin: 0 auto !important;
 `;
 
 const TipModalView = (tipModalProps: TipModalProps) => {
@@ -49,6 +50,13 @@ const TipModalView = (tipModalProps: TipModalProps) => {
 
   const [activeToken, setActiveToken] = React.useState<string>('');
   const [amount, setAmount] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    if (!isOpen) {
+      setAmount(0);
+      setActiveToken('');
+    }
+  }, [isOpen]);
 
   const calculateStep = (token: string) => {
     switch (token) {
@@ -89,8 +97,8 @@ const TipModalView = (tipModalProps: TipModalProps) => {
             onChange={(val: number) => setAmount(val)}
           />
         </Box>
-        <TokensWrapper mt={2} flexWrap="wrap">
-          <Box width={[1, 1 / 2, 1 / 3]} my={1}>
+        <TokensWrapper mb={2} flexWrap="wrap">
+          <Box m={1}>
             <Selectable
               isSelected={activeToken === 'SPANK'}
               onClick={() => setActiveToken('SPANK')}
@@ -101,7 +109,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
               </>
             </Selectable>
           </Box>
-          <Box width={[1, 1 / 2, 1 / 3]} my={1}>
+          <Box m={1}>
             <Selectable
               isSelected={activeToken === 'DAI'}
               onClick={() => setActiveToken('DAI')}
@@ -112,7 +120,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
               </>
             </Selectable>
           </Box>
-          <Box width={[1, 1 / 2, 1 / 3]} my={1}>
+          <Box m={1}>
             <Selectable
               isSelected={activeToken === 'ETH'}
               onClick={() => setActiveToken('ETH')}
