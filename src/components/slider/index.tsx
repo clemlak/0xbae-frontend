@@ -13,11 +13,11 @@ interface StyledSliderProps {
   unfilled: number,
 }
 
-const StyledSlider = styled.input.attrs({
-  style: (props: StyledSliderProps) => ({
+const StyledSlider = styled.input.attrs((props: StyledSliderProps) => ({
+  style: {
     background: `linear-gradient(to left, #ddd ${props.unfilled}%, #fa7fb0 0%)`,
-  }),
-})<StyledSliderProps>`
+  },
+}))<StyledSliderProps>`
   -webkit-appearance: none;
   width: 100%;
   height: 6px;

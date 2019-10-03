@@ -60,10 +60,19 @@ const ImageViewer = (modalProps: ModalProps) => {
     toggle,
   } = modalProps;
 
+
+  const contentRef = React.useRef<HTMLImageElement>(null);
+
+  function handleClick(e: React.SyntheticEvent) {
+    if (contentRef.current && !contentRef.current.contains(e.target as Node)) {
+      toggle();
+    }
+  }
+
   return (
-    <Wrapper isOpen={isOpen}>
+    <Wrapper isOpen={isOpen} onClick={(e) => handleClick(e)}>
       <CloseButton src={CloseImg} onClick={() => toggle()} />
-      <Image src={imageSrc} />
+      <Image src={imageSrc} ref={contentRef} />
     </Wrapper>
   );
 };

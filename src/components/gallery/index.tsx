@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Button from '../button';
 import ImageViewer from '../imageViewer';
+import TipModal from '../tipModal';
 
 interface GalleryProps {
   images: string[]
@@ -14,8 +15,6 @@ const GalleryStyled = styled.div`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  margin: -1rem -1rem;
-  padding-bottom: 3rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
   grid-gap: 2rem;
@@ -70,6 +69,8 @@ const Gallery = (galleryProps: GalleryProps) => {
   const [isImageViewerOpen, toggleImageViewer] = React.useState(false);
   const [imageViewerTarget, setImageViewerTarget] = React.useState<string>('');
 
+  const [isTipModalOpen, toggleTipModal] = React.useState(false);
+
   function handleViewClick(imageTarget: string) {
     setImageViewerTarget(imageTarget);
     toggleImageViewer(true);
@@ -77,13 +78,17 @@ const Gallery = (galleryProps: GalleryProps) => {
 
   return (
     <GalleryStyled>
+      <TipModal
+        isOpen={isTipModalOpen}
+        toggle={() => toggleTipModal(false)}
+      />
       <ImageViewer
         imageSrc={imageViewerTarget}
         isOpen={isImageViewerOpen}
         toggle={() => toggleImageViewer(false)}
       />
       {images.map((image: string) => (
-        <GalleryItem>
+        <GalleryItem key={image}>
           <GalleryImage src={image} alt={image} />
           <GalleryItemInfo>
             <ButtonWrapper>
@@ -92,7 +97,7 @@ const Gallery = (galleryProps: GalleryProps) => {
               </Button>
             </ButtonWrapper>
             <ButtonWrapper>
-              <Button onClick={() => {}}>
+              <Button onClick={() => toggleTipModal(true)}>
                 Tip
               </Button>
             </ButtonWrapper>

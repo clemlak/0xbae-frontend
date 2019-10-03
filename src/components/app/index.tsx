@@ -3,7 +3,11 @@ import {
   Flex,
   Box,
 } from 'reflexbox';
+import {
+  ThemeProvider,
+} from 'styled-components';
 
+import theme from '../../style/theme';
 import GlobalStyle from '../../style/globalStyle';
 
 import Header from '../header';
@@ -32,13 +36,17 @@ const App = () => {
 
   return (
     <>
-      <GlobalStyle />
-      <Header />
-      <Flex>
-        <Box p={5}>
-          <Gallery images={images} />
-        </Box>
-      </Flex>
+      <ThemeProvider theme={theme}>
+        <>
+          <GlobalStyle />
+          <Header />
+          <Flex>
+            <Box p={5}>
+              <Gallery images={images} />
+            </Box>
+          </Flex>
+        </>
+      </ThemeProvider>
     </>
   );
 };

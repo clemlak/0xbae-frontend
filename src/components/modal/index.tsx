@@ -36,7 +36,7 @@ const Wrapper = styled.div<WrapperProps>`
 
 const Content = styled.div`
   background-color: #fff;
-  max-width: 80vh;
+  max-width: 60vh;
   width: 100%;
   border-radius: 15px;
 `;
@@ -49,6 +49,7 @@ const Title = styled.span`
 
 const CloseButton = styled.img`
   height: 14px;
+  cursor: pointer;
 `;
 
 const TitleBox = styled(Box)`
@@ -66,9 +67,17 @@ function Modal(props: Props) {
     toggle,
   } = props;
 
+  const contentRef = React.useRef<HTMLDivElement>(null);
+
+  function handleClick(e: React.SyntheticEvent) {
+    if (contentRef.current && !contentRef.current.contains(e.target as Node)) {
+      toggle();
+    }
+  }
+
   return (
-    <Wrapper isOpen={isOpen}>
-      <Content>
+    <Wrapper isOpen={isOpen} onClick={(e) => handleClick(e)}>
+      <Content ref={contentRef}>
         <Flex>
           <TitleBox width={1 / 2} p={3}>
             <Title>

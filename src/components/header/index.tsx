@@ -10,7 +10,7 @@ import Button from '../button';
 const Title = styled.h1`
   font-family: 'Nunito Sans';
   font-weight: 700;
-  color: #F9639F;
+  color: ${(props) => props.theme.colors.main};
 `;
 
 const Navbar = styled(Box)`
@@ -20,8 +20,8 @@ const Navbar = styled(Box)`
 `;
 
 const Header = () => (
-  <Flex>
-    <Box width={1 / 2} p={3}>
+  <Flex px={5} py={3} flexWrap="wrap">
+    <Box width={1 / 2}>
       <Title>
         <span role="img" aria-label="logo">
           🍑
@@ -30,7 +30,7 @@ const Header = () => (
         0xbae
       </Title>
     </Box>
-    <Navbar width={1 / 2} p={3}>
+    <Navbar width={1 / 2}>
       <Button
         onClick={() => {}}
       >
