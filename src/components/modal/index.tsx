@@ -5,12 +5,16 @@ import {
   Box,
 } from 'reflexbox/styled-components';
 
-import CloseIcon from '../../assets/img/close.svg';
+import Button from '../button';
+import CloseIcon from '../../assets/img/close_black.svg';
 
 interface Props {
   isOpen: boolean,
-  title?: string,
-  children: string | JSX.Element | JSX.Element[]
+  title: string,
+  children: string | JSX.Element | JSX.Element[],
+  buttonAction: Function,
+  buttonText: string,
+  toggle: Function,
 }
 
 interface WrapperProps {
@@ -18,8 +22,8 @@ interface WrapperProps {
 }
 
 const Wrapper = styled.div<WrapperProps>`
+  background-color: rgba(0, 0, 0, 0.65);
   display: ${(props) => (props.isOpen ? 'flex' : 'none')};
-  background-color: rgba(0, 0, 0, 0.33);
   width: 100%;
   height: 100%;
   position: fixed;
@@ -35,14 +39,9 @@ const Wrapper = styled.div<WrapperProps>`
 
 const Content = styled.div`
   background-color: #fff;
-  max-height: 65vh;
-  min-height: 60vh;
-  width: 65vw;
-  max-width: 650px;
-  margin: 0;
-  padding: 0px;
-  overflow: hidden;
-  border-radius: 10px;
+  max-width: 80vh;
+  width: 100%;
+  border-radius: 15px;
 `;
 
 const Title = styled.span`
@@ -52,7 +51,7 @@ const Title = styled.span`
 `;
 
 const CloseButton = styled.img`
-  height: 18px;
+  height: 14px;
 `;
 
 const TitleBox = styled(Box)`
@@ -66,23 +65,37 @@ function Modal(props: Props) {
   const {
     children,
     isOpen,
+    buttonAction,
+    buttonText,
     title,
+    toggle,
   } = props;
 
   return (
     <Wrapper isOpen={isOpen}>
       <Content>
         <Flex>
-          <TitleBox width={1 / 2} p={2}>
+          <TitleBox width={1 / 2} p={3}>
             <Title>
               {title}
             </Title>
           </TitleBox>
-          <CloseBox width={1 / 2} p={2}>
-            <CloseButton src={CloseIcon} alt="close" />
+          <CloseBox width={1 / 2} p={3}>
+            <CloseButton src={CloseIcon} alt="close" onClick={() => toggle()} />
           </CloseBox>
         </Flex>
-        {children}
+        <Flex>
+          <Box p={3} width={1}>
+            {children}
+          </Box>
+        </Flex>
+        <Flex>
+          <Box p={3} width={1}>
+            <Button onClick={() => buttonAction()} block>
+              {buttonText}
+            </Button>
+          </Box>
+        </Flex>
       </Content>
     </Wrapper>
   );

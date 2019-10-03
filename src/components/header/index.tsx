@@ -13,6 +13,12 @@ const Title = styled.h1`
   color: #F9639F;
 `;
 
+const Navbar = styled(Box)`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
 const Header = () => (
   <Flex>
     <Box width={1 / 2} p={3}>
@@ -24,13 +30,13 @@ const Header = () => (
         0xbae
       </Title>
     </Box>
-    <Box width={1 / 2} p={3}>
+    <Navbar width={1 / 2} p={3}>
       <Button
         onClick={() => {}}
       >
         Upload
       </Button>
-    </Box>
+    </Navbar>
   </Flex>
 );
 

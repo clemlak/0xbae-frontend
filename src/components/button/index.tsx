@@ -2,37 +2,39 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 interface Props {
+  secondary?: boolean,
   block?: boolean,
   onClick: Function,
   children: string | JSX.Element | JSX.Element[]
 }
 
 interface WrapperProps {
-  block: boolean
+  block: boolean,
+  secondary: boolean
 }
 
 const Wrapper = styled.button<WrapperProps>`
   font-family: 'Nunito Sans', sans-serif;
   width: ${(props) => props.block && '100%'};
   min-width: 100px;
-  display: flex;
-  position: relative;
+  display: block;
   justify-content: center;
   align-items: center;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   height: 2.5rem;
   cursor: pointer;
-  color: #fff;
+  color: ${(props) => (props.secondary ? '#f9639f' : '#fff')};
+  background-color: ${(props) => (props.secondary ? '#fff' : '#f9639f')};
   font-weight: 400;
   font-size: 14px;
   border-radius: 1000rem;
   border: none;
-  background: #F9639F;
   transition: all 0.2s ease-in-out 0s;
 
   &:hover {
-    background: #F971A7;
+    color: #fff;
+    background-color: ${(props) => (props.secondary ? '#f9639f' : '#fa7fb0')};
   }
 
   &:focus {
@@ -45,12 +47,14 @@ function Button(props: Props) {
     children,
     onClick,
     block = false,
+    secondary = false,
   } = props;
 
   return (
     <Wrapper
       onClick={() => onClick()}
       block={block}
+      secondary={secondary}
     >
       {children}
     </Wrapper>
