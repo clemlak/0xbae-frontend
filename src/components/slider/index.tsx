@@ -30,8 +30,8 @@ const StyledSlider = styled.input.attrs((props: StyledSliderProps) => ({
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background-color: #f9639f;
-    border: 5px solid #f9639f;
+    background-color: ${(props) => props.theme.colors.main};
+    border: ${(props) => `5px solid ${props.theme.colors.main}`};
     cursor: pointer;
   }
 `;

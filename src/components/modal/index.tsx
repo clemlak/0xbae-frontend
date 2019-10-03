@@ -35,7 +35,7 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 const Content = styled.div`
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.white};
   max-width: 60vh;
   width: 100%;
   border-radius: 15px;

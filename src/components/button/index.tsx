@@ -26,24 +26,24 @@ const Wrapper = styled.button<WrapperProps>`
   padding-right: 1.5rem;
   height: 2.5rem;
   cursor: pointer;
-  color: ${(props) => (props.secondary ? '#f9639f' : '#fff')};
-  background-color: ${(props) => (props.secondary ? '#fff' : '#f9639f')};
+  color: ${(props) => (props.secondary ? props.theme.colors.main : props.theme.colors.white)};
+  background-color: ${(props) => (props.secondary ? props.theme.colors.white : props.theme.colors.main)};
   font-weight: 400;
   font-size: 14px;
   border-radius: 1000rem;
   border: none;
   transition: all 0.2s ease-in-out 0s;
 
-  color: ${(props) => (props.disabled && '#fff')};
-  background-color: ${(props) => (props.disabled && '#aaa')};
+  color: ${(props) => (props.disabled && props.theme.colors.white)};
+  background-color: ${(props) => (props.disabled && props.theme.colors.grey1)};
   cursor: ${(props) => (props.disabled ? 'no-drop' : 'pointer')};
 
   &:hover {
-    color: #fff;
-    background-color: ${(props) => (props.secondary ? '#f9639f' : '#fa7fb0')};
+    color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => (props.secondary ? props.theme.colors.main : props.theme.colors.secondary)};
 
-    color: ${(props) => (props.disabled && '#fff')};
-    background-color: ${(props) => (props.disabled && '#aaa')};
+    color: ${(props) => (props.disabled && props.theme.colors.white)};
+    background-color: ${(props) => (props.disabled && props.theme.colors.grey1)};
     cursor: ${(props) => (props.disabled ? 'no-drop' : 'pointer')};
   }
 

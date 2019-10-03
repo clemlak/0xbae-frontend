@@ -20,14 +20,14 @@ interface TipModalProps {
 
 const Text = styled.p`
   font-family: 'Nunito Sans', sans-serif;
-  color: #aaa;
+  color: ${(props) => props.theme.colors.grey1};
   padding: 0;
   margin: 0;
 `;
 
 const Amount = styled.p`
   font-family: 'Nunito Sans', sans-serif;
-  color: #000;
+  color: ${(props) => props.theme.colors.black};
   font-size: 45px;
   font-weight: 700;
   text-align: center;

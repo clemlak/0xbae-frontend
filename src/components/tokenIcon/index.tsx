@@ -8,7 +8,7 @@ interface TokenIconProps {
 const TokenIconStyled = styled.img`
   width: 2rem;
   height: 2rem;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white};
   border-radius: 1rem;
   margin-right: 5px;
 `;
