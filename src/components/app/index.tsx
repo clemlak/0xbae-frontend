@@ -3,9 +3,8 @@ import {
   Flex,
   Box,
 } from 'reflexbox';
-import {
-  createGlobalStyle,
-} from 'styled-components';
+
+import GlobalStyle from '../../style/globalStyle';
 
 import Header from '../header';
 import Gallery from '../gallery';
@@ -14,14 +13,6 @@ interface ImageInterface {
   /* eslint-disable-next-line camelcase */
   download_url: string
 }
-
-const GlobalStyle = createGlobalStyle`
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-  }
-`;
 
 const App = () => {
   const [images, setImages] = React.useState<string[]>([]);
