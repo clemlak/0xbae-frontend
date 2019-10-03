@@ -23,5 +23,13 @@
         "@typescript-eslint"
     ],
     "rules": {
+      "react/jsx-filename-extension": "off"
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        }
+      }
     }
 }
