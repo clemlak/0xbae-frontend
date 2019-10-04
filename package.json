@@ -11,6 +11,7 @@
     "@types/reflexbox": "^4.0.0",
     "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.19",
+    "@types/web3": "^1.0.20",
     "awesome-typescript-loader": "^5.2.1",
     "numeral": "^2.0.6",
     "prop-types": "^15.7.2",
