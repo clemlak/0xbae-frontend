@@ -29,7 +29,7 @@ const Wrapper = styled.div<WrapperProps>`
   bottom: 0;
   left: 0;
   overflow: auto;
-  z-index: 2;
+  z-index: 50;
   align-items: center;
   justify-content: center;
 `;
@@ -39,6 +39,7 @@ const Content = styled.div`
   max-width: 60vh;
   width: 100%;
   border-radius: 15px;
+  z-index: 100;
 `;
 
 const Title = styled.span`
@@ -66,6 +67,14 @@ function Modal(props: Props) {
     title,
     toggle,
   } = props;
+
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'initial';
+    }
+  }, [isOpen]);
 
   const contentRef = React.useRef<HTMLDivElement>(null);
 
