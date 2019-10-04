@@ -8,6 +8,8 @@ const initialState = {
   ethBalance: 0,
   daiBalance: 0,
   spankBalance: 0,
+  dispatch: () => {},
+  web3: null,
 };
 
 const Web3Context = React.createContext<StateInterface>(initialState);
@@ -18,7 +20,8 @@ interface StateInterface {
   ethBalance: number,
   daiBalance: number,
   spankBalance: number,
-  dispatch?: Function,
+  dispatch: Function,
+  web3: any,
 }
 
 interface ActionInterface {
