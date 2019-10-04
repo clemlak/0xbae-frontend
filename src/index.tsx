@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './components/app';
+import Web3Loader from './store/web3Loader';
 
 ReactDOM.render(
-  <App />,
+  <Web3Loader />,
   document.getElementById('root'),
 );
