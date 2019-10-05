@@ -13,7 +13,7 @@ interface Ethereum {
   isMetaMask?: boolean,
   enable: () => Promise<void>,
   send: () => Promise<void>,
-  on?: (eventName: string, listener: Function) => void,
+  on: (eventName: string, listener: Function) => void,
   removeListener?: (eventName: string, listener: Function) => void,
 }
 
@@ -29,7 +29,7 @@ const Web3Loader = () => {
 
   const {
     dispatch,
-    address,
+    isReady,
     web3,
   } = state;
 
@@ -44,13 +44,16 @@ const Web3Loader = () => {
           dispatch({
             target: 'web3',
             value: window.web3,
-            action: 'set',
+            type: 'set',
           });
 
-          console.log('Account enabled');
+          dispatch({
+            target: 'isReady',
+            value: true,
+            type: 'set',
+          });
         } catch (err) {
           console.log(err);
-          console.log('Account error');
         }
       } else if (window.web3) {
         window.web3 = new Web3(window.web3);
@@ -58,7 +61,13 @@ const Web3Loader = () => {
         dispatch({
           target: 'web3',
           value: window.web3,
-          action: 'set',
+          type: 'set',
+        });
+
+        dispatch({
+          target: 'isReady',
+          value: true,
+          type: 'set',
         });
       }
     }
@@ -67,19 +76,20 @@ const Web3Loader = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
-    console.log('Fetching data');
-
     async function getAccountData() {
       if (web3) {
         const accounts = await web3.eth.getAccounts();
-        console.log(accounts);
-      } else {
-        console.log('Web3 is not defined');
+
+        dispatch({
+          target: 'address',
+          value: accounts[0],
+          type: 'set',
+        });
       }
     }
 
     getAccountData();
-  }, [web3]);
+  }, [isReady]);
 
   return <App />;
 };

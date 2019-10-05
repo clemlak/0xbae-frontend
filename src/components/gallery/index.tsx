@@ -67,6 +67,13 @@ const ButtonWrapper = styled.div`
   margin: 5px;
 `;
 
+const Text = styled.p`
+  font-family: 'Nunito Sans', sans-serif;
+  color: ${(props) => props.theme.colors.grey1};
+  padding: 0;
+  margin: 0;
+`;
+
 const Gallery = (galleryProps: GalleryProps) => {
   const {
     posts,
@@ -100,23 +107,29 @@ const Gallery = (galleryProps: GalleryProps) => {
         isOpen={isImageViewerOpen}
         toggle={() => toggleImageViewer(false)}
       />
-      {posts.map((post: Post) => (
-        <GalleryItem key={post.model}>
-          <GalleryImage src={post.src} alt={post.model} />
-          <GalleryItemInfo>
-            <ButtonWrapper>
-              <Button onClick={() => handleViewClick(post.src)} secondary>
-                View
-              </Button>
-            </ButtonWrapper>
-            <ButtonWrapper>
-              <Button onClick={() => handleTipClick(post.model)}>
-                Tip
-              </Button>
-            </ButtonWrapper>
-          </GalleryItemInfo>
-        </GalleryItem>
-      ))}
+      {posts.length > 0 ? (
+        posts.map((post: Post) => (
+          <GalleryItem key={post.model}>
+            <GalleryImage src={post.src} alt={post.model} />
+            <GalleryItemInfo>
+              <ButtonWrapper>
+                <Button onClick={() => handleViewClick(post.src)} secondary>
+                  View
+                </Button>
+              </ButtonWrapper>
+              <ButtonWrapper>
+                <Button onClick={() => handleTipClick(post.model)}>
+                  Tip
+                </Button>
+              </ButtonWrapper>
+            </GalleryItemInfo>
+          </GalleryItem>
+        ))
+      ) : (
+        <Text>
+          Nothing to show...
+        </Text>
+      )}
     </GalleryStyled>
   );
 };

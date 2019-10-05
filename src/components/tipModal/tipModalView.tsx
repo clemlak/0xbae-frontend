@@ -17,6 +17,7 @@ interface TipModalProps {
   toggle: Function,
   tip: Function,
   model: string,
+  buttonText: string,
 }
 
 const Text = styled.p`
@@ -48,6 +49,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
     tip,
     isOpen,
     model,
+    buttonText,
   } = tipModalProps;
 
   const [activeToken, setActiveToken] = React.useState<string>('');
@@ -140,7 +142,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
             disabled={amount === 0 || activeToken === ''}
             block
           >
-            Tip
+            {buttonText}
           </Button>
         </Box>
       </Flex>

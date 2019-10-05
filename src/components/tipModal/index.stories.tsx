@@ -11,6 +11,7 @@ storiesOf('TipModal', module)
       tip={action('Tip')}
       toggle={action('Close')}
       model="Jaspi"
+      buttonText="Tip"
       isOpen
     />
   ));

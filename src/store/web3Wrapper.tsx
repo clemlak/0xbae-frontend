@@ -2,26 +2,17 @@ import * as React from 'react';
 
 import Web3Loader from './web3Loader';
 
-const initialState = {
-  isReady: false,
-  address: '',
-  ethBalance: 0,
-  daiBalance: 0,
-  spankBalance: 0,
-  dispatch: () => {},
-  web3: null,
-};
-
-const Web3Context = React.createContext<StateInterface>(initialState);
-
 interface StateInterface {
   isReady: boolean,
   address: string,
   ethBalance: number,
   daiBalance: number,
   spankBalance: number,
-  dispatch: Function,
   web3: any,
+}
+
+interface Web3ContextInterface extends StateInterface {
+  dispatch: React.Dispatch<any>,
 }
 
 interface ActionInterface {
@@ -41,6 +32,17 @@ function updateState(state: StateInterface, action: ActionInterface) {
       throw new Error('Unexpected action...');
   }
 }
+
+const initialState = {
+  isReady: false,
+  address: '',
+  ethBalance: 0,
+  daiBalance: 0,
+  spankBalance: 0,
+  web3: null,
+};
+
+const Web3Context = React.createContext({} as Web3ContextInterface);
 
 const Web3Wrapper = () => {
   const [state, dispatch] = React.useReducer(updateState, initialState);
