@@ -79,10 +79,50 @@ const Web3Loader = () => {
     async function getAccountData() {
       if (web3) {
         const accounts = await web3.eth.getAccounts();
+        const address = accounts[0];
 
         dispatch({
           target: 'address',
-          value: accounts[0],
+          value: address,
+          type: 'set',
+        });
+
+        const ethBalance = await web3.eth.getBalance(address);
+
+        dispatch({
+          target: 'ethBalance',
+          value: parseFloat(web3.utils.fromWei(ethBalance.toString())),
+          type: 'set',
+        });
+
+        const data = web3.eth.abi.encodeFunctionCall({
+          name: 'balanceOf',
+          type: 'function',
+          inputs: [{
+            type: 'address',
+            name: '_owner',
+          }],
+        }, [address]);
+
+        const daiBalance = await web3.eth.call({
+          to: '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359',
+          data,
+        });
+
+        dispatch({
+          target: 'daiBalance',
+          value: parseFloat(web3.utils.fromWei(daiBalance.toString())),
+          type: 'set',
+        });
+
+        const spankBalance = await web3.eth.call({
+          to: '0x42d6622dece394b54999fbd73d108123806f6a18',
+          data,
+        });
+
+        dispatch({
+          target: 'spankBalance',
+          value: parseFloat(web3.utils.fromWei(spankBalance.toString())),
           type: 'set',
         });
       }

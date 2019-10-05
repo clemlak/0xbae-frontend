@@ -4,13 +4,12 @@ import {
   Box,
 } from 'reflexbox';
 import styled from 'styled-components';
-import numeral from 'numeral';
 
 import Modal from '../modal';
 import TokenIcon from '../tokenIcon';
 import Selectable from '../selectable';
 import Button from '../button';
-import Slider from '../slider';
+import AmountInput from '../amountInput';
 
 interface TipModalProps {
   isOpen: boolean,
@@ -23,16 +22,6 @@ interface TipModalProps {
 const Text = styled.p`
   font-family: 'Nunito Sans', sans-serif;
   color: ${(props) => props.theme.colors.grey1};
-  padding: 0;
-  margin: 0;
-`;
-
-const Amount = styled.p`
-  font-family: 'Nunito Sans', sans-serif;
-  color: ${(props) => props.theme.colors.black};
-  font-size: 45px;
-  font-weight: 700;
-  text-align: center;
   padding: 0;
   margin: 0;
 `;
@@ -57,23 +46,9 @@ const TipModalView = (tipModalProps: TipModalProps) => {
 
   React.useEffect(() => {
     if (!isOpen) {
-      setAmount(0);
       setActiveToken('');
     }
   }, [isOpen]);
-
-  const calculateStep = (token: string) => {
-    switch (token) {
-      case 'SPANK':
-        return 100;
-      case 'BOOTY':
-        return 1;
-      case 'DAI':
-        return 1;
-      default:
-        return 1;
-    }
-  };
 
   return (
     <Modal
@@ -87,21 +62,14 @@ const TipModalView = (tipModalProps: TipModalProps) => {
             How much tokens do you want to tip?
           </Text>
         </Box>
-        <Box width={1}>
-          <Amount>
-            {numeral(amount).format('0,0')}
-          </Amount>
-        </Box>
         <Box width={1} mb={3}>
-          <Slider
-            step={calculateStep(activeToken)}
-            min={0}
-            max={10000}
+          <AmountInput
             value={amount}
             onChange={(val: number) => setAmount(val)}
+            block
           />
         </Box>
-        <TokensWrapper mb={2} flexWrap="wrap">
+        <TokensWrapper mb={4} flexWrap="wrap">
           <Box m={1}>
             <Selectable
               isSelected={activeToken === 'SPANK'}
@@ -139,7 +107,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
         <Box width={1} mt={3}>
           <Button
             onClick={() => tip()}
-            disabled={amount === 0 || activeToken === ''}
+            disabled={amount === 0 || !amount || activeToken === ''}
             block
           >
             {buttonText}

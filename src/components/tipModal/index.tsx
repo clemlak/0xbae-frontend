@@ -27,6 +27,9 @@ const TipModal = (tipModalProps: TipModalProps) => {
 
   const {
     address,
+    ethBalance,
+    daiBalance,
+    spankBalance,
   } = state;
 
   const [buttonText, setButtonText] = React.useState<string>('');
@@ -35,7 +38,7 @@ const TipModal = (tipModalProps: TipModalProps) => {
     if (address) {
       setButtonText('Tip');
     }
-  }, [address]);
+  }, [address, ethBalance]);
 
   return (
     <TipModalView

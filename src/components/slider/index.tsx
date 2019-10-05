@@ -48,15 +48,17 @@ const Slider = (sliderProps: SliderProps) => {
   const unfilled = 100 - ((value / max) * 100);
 
   return (
-    <StyledSlider
-      type="range"
-      step={step}
-      min={min}
-      max={max}
-      value={value}
-      unfilled={unfilled}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(parseInt(e.target.value, 10))}
-    />
+    <>
+      <StyledSlider
+        type="range"
+        step={step}
+        min={min}
+        max={max}
+        value={value}
+        unfilled={unfilled}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(parseInt(e.target.value, 10))}
+      />
+    </>
   );
 };
 
