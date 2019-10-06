@@ -7,6 +7,10 @@ import {
 
 import App from '../components/app';
 
+import {
+  getBalanceOf,
+} from '../utils/utils';
+
 interface Ethereum {
   selectedAddress: string,
   autoRefreshOnNetworkChange?: boolean,
@@ -38,14 +42,14 @@ const Web3Loader = () => {
       if (window.ethereum) {
         window.web3 = new Web3(window.ethereum);
 
+        dispatch({
+          target: 'web3',
+          value: window.web3,
+          type: 'set',
+        });
+
         try {
           await window.ethereum.enable();
-
-          dispatch({
-            target: 'web3',
-            value: window.web3,
-            type: 'set',
-          });
 
           dispatch({
             target: 'isReady',
@@ -81,6 +85,8 @@ const Web3Loader = () => {
         const accounts = await web3.eth.getAccounts();
         const address = accounts[0];
 
+        // const networkId: number = await web3.eth.net.getId();
+
         dispatch({
           target: 'address',
           value: address,
@@ -95,34 +101,27 @@ const Web3Loader = () => {
           type: 'set',
         });
 
-        const data = web3.eth.abi.encodeFunctionCall({
-          name: 'balanceOf',
-          type: 'function',
-          inputs: [{
-            type: 'address',
-            name: '_owner',
-          }],
-        }, [address]);
-
-        const daiBalance = await web3.eth.call({
-          to: '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359',
-          data,
-        });
+        const daiBalance = await getBalanceOf(
+          web3,
+          '0x2cD829003d746E57118a6153BdFa71039f0b8d78',
+          address,
+        );
 
         dispatch({
           target: 'daiBalance',
-          value: parseFloat(web3.utils.fromWei(daiBalance.toString())),
+          value: daiBalance,
           type: 'set',
         });
 
-        const spankBalance = await web3.eth.call({
-          to: '0x42d6622dece394b54999fbd73d108123806f6a18',
-          data,
-        });
+        const spankBalance = await getBalanceOf(
+          web3,
+          '0x2cD829003d746E57118a6153BdFa71039f0b8d78',
+          address,
+        );
 
         dispatch({
           target: 'spankBalance',
-          value: parseFloat(web3.utils.fromWei(spankBalance.toString())),
+          value: spankBalance,
           type: 'set',
         });
       }

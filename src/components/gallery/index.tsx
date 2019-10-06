@@ -84,14 +84,16 @@ const Gallery = (galleryProps: GalleryProps) => {
 
   const [isTipModalOpen, toggleTipModal] = React.useState(false);
   const [model, setModel] = React.useState<string>('');
+  const [address, setAddress] = React.useState<string>('');
 
   function handleViewClick(imageTarget: string) {
     setImageViewerTarget(imageTarget);
     toggleImageViewer(true);
   }
 
-  function handleTipClick(modelTarget: string) {
+  function handleTipClick(modelTarget: string, addressTarget: string) {
     setModel(modelTarget);
+    setAddress(addressTarget);
     toggleTipModal(true);
   }
 
@@ -101,6 +103,7 @@ const Gallery = (galleryProps: GalleryProps) => {
         isOpen={isTipModalOpen}
         model={model}
         toggle={() => toggleTipModal(false)}
+        modelAddress={address}
       />
       <ImageViewer
         imageSrc={imageViewerTarget}
@@ -118,7 +121,7 @@ const Gallery = (galleryProps: GalleryProps) => {
                 </Button>
               </ButtonWrapper>
               <ButtonWrapper>
-                <Button onClick={() => handleTipClick(post.model)}>
+                <Button onClick={() => handleTipClick(post.model, post.address)}>
                   Tip
                 </Button>
               </ButtonWrapper>

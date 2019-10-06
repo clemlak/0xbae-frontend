@@ -21,7 +21,7 @@ const Content = () => {
 
   React.useEffect(() => {
     async function fetchPosts() {
-      const res = await fetch('https://0xbae-backend-2c60r5xu8.now.sh/');
+      const res = await fetch('http://localhost:3001');
       const json = await res.json();
       setPosts(json);
     }

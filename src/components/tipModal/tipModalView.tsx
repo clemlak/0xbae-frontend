@@ -17,6 +17,11 @@ interface TipModalProps {
   tip: Function,
   model: string,
   buttonText: string,
+  tipAmount: number,
+  activeToken: string,
+  onAmountUpdate: Function,
+  onTokenUpdate: Function,
+  isButtonDisabled: boolean,
 }
 
 const Text = styled.p`
@@ -39,16 +44,12 @@ const TipModalView = (tipModalProps: TipModalProps) => {
     isOpen,
     model,
     buttonText,
+    isButtonDisabled,
+    onAmountUpdate,
+    onTokenUpdate,
+    tipAmount,
+    activeToken,
   } = tipModalProps;
-
-  const [activeToken, setActiveToken] = React.useState<string>('');
-  const [amount, setAmount] = React.useState<number>(0);
-
-  React.useEffect(() => {
-    if (!isOpen) {
-      setActiveToken('');
-    }
-  }, [isOpen]);
 
   return (
     <Modal
@@ -64,8 +65,8 @@ const TipModalView = (tipModalProps: TipModalProps) => {
         </Box>
         <Box width={1} mb={3}>
           <AmountInput
-            value={amount}
-            onChange={(val: number) => setAmount(val)}
+            value={tipAmount}
+            onChange={(val: number) => onAmountUpdate(val)}
             block
           />
         </Box>
@@ -73,7 +74,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
           <Box m={1}>
             <Selectable
               isSelected={activeToken === 'SPANK'}
-              onClick={() => setActiveToken('SPANK')}
+              onClick={() => onTokenUpdate('SPANK')}
             >
               <>
                 <TokenIcon src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x42d6622dece394b54999fbd73d108123806f6a18/logo.png" />
@@ -84,7 +85,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
           <Box m={1}>
             <Selectable
               isSelected={activeToken === 'DAI'}
-              onClick={() => setActiveToken('DAI')}
+              onClick={() => onTokenUpdate('DAI')}
             >
               <>
                 <TokenIcon src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359/logo.png" />
@@ -95,7 +96,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
           <Box m={1}>
             <Selectable
               isSelected={activeToken === 'ETH'}
-              onClick={() => setActiveToken('ETH')}
+              onClick={() => onTokenUpdate('ETH')}
             >
               <>
                 <TokenIcon src="https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2/logo.png" />
@@ -107,7 +108,7 @@ const TipModalView = (tipModalProps: TipModalProps) => {
         <Box width={1} mt={3}>
           <Button
             onClick={() => tip()}
-            disabled={amount === 0 || !amount || activeToken === ''}
+            disabled={isButtonDisabled}
             block
           >
             {buttonText}
