@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 
 import {
   Web3Context,
@@ -88,10 +89,30 @@ async function upload(
     return;
   }
 
-  try {
-    setUploadStatus('pending');
+  setUploadStatus('pending');
 
-    const res = await fetch('https://0xbae-backend.clemlak.now.sh/add', {
+  try {
+    const data = await axios({
+      method: 'post',
+      url: 'https://0xbae-backend.clemlak.now.sh/add',
+      data: {
+        url,
+        model: username,
+        address,
+      },
+    });
+
+    console.log(data);
+
+    setUploadStatus('done');
+  } catch (err) {
+    console.log(err);
+    setUploadStatus('error');
+  }
+
+    /*
+
+    const res = await fetch(, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -99,11 +120,11 @@ async function upload(
         Origin: 'https://0xbae.gq/',
       },
       body: JSON.stringify({
-        url,
-        model: username,
-        address,
+
       }),
     });
+
+
 
     const status = await res.json();
 
@@ -114,8 +135,8 @@ async function upload(
     }
   } catch (err) {
     console.log(err);
-    setUploadStatus('error');
-  }
+
+  } */
 }
 
 const UploadModal = (uploadModalProps: UploadModalProps) => {
