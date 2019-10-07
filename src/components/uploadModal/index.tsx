@@ -137,6 +137,14 @@ const UploadModal = (uploadModalProps: UploadModalProps) => {
     address,
   } = state;
 
+  React.useEffect(() => {
+    if (!isOpen) {
+      setPicUrl('');
+      setUsername('');
+      setUploadStatus('');
+    }
+  }, [isOpen]);
+
   return (
     <UploadModalView
       isOpen={isOpen}
