@@ -4,6 +4,7 @@ import Web3Loader from './web3Loader';
 
 interface StateInterface {
   isReady: boolean,
+  networkId: number,
   address: string,
   ethBalance: number,
   daiBalance: number,
@@ -35,6 +36,7 @@ function updateState(state: StateInterface, action: ActionInterface) {
 
 const initialState = {
   isReady: false,
+  networkId: 0,
   address: '',
   ethBalance: 0,
   daiBalance: 0,

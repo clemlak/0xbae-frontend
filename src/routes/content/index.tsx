@@ -3,7 +3,7 @@ import {
   Flex,
   Box,
 } from 'reflexbox';
-import Gallery from '../gallery';
+import Gallery from '../../components/gallery';
 
 interface ImageInterface {
   /* eslint-disable-next-line camelcase */

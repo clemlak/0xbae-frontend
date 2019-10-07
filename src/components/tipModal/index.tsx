@@ -26,13 +26,18 @@ function returnButtonText(
   spankBalance: number,
   daiBalance: number,
   txState: string,
+  networkId: number,
 ) {
   if (!web3) {
-    return 'No Web3 provider';
+    return 'Wallet not found';
   }
 
   if (!isReady) {
     return 'Unlock your account';
+  }
+
+  if (networkId !== 4) {
+    return 'Please connect to Rinkeby';
   }
 
   if (token === 'DAI' && tipAmount > daiBalance) {
@@ -71,6 +76,7 @@ function isButtonDisabled(
   spankBalance: number,
   daiBalance: number,
   txState: string,
+  networkId: number,
 ) {
   if (!web3) {
     return true;
@@ -78,6 +84,10 @@ function isButtonDisabled(
 
   if (!isReady) {
     return false;
+  }
+
+  if (networkId !== 4) {
+    return true;
   }
 
   if (txState === 'done') {
@@ -147,8 +157,6 @@ async function tip(
   if (isReady) {
     setTxState('pending');
 
-    // const networkId: number = await web3.eth.net.getId() as number;
-    // const tokenAddress: string = token === 'DAI' ?
     const tokenAddress: string = '0x2cD829003d746E57118a6153BdFa71039f0b8d78';
 
     try {
@@ -190,6 +198,7 @@ const TipModal = (tipModalProps: TipModalProps) => {
     daiBalance,
     spankBalance,
     dispatch,
+    networkId,
   } = state;
 
   React.useEffect(() => {
@@ -226,6 +235,7 @@ const TipModal = (tipModalProps: TipModalProps) => {
         spankBalance,
         daiBalance,
         txState,
+        networkId,
       )}
       isButtonDisabled={isButtonDisabled(
         web3,
@@ -236,6 +246,7 @@ const TipModal = (tipModalProps: TipModalProps) => {
         spankBalance,
         daiBalance,
         txState,
+        networkId,
       )}
       tipAmount={tipAmount}
       activeToken={activeToken}

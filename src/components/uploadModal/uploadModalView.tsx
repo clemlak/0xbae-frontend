@@ -15,6 +15,8 @@ interface UploadModalProps {
   onUsernameUpdate: Function,
   onPicUrlUpdate: Function,
   upload: Function,
+  buttonText: string,
+  isUploadButtonDisabled: boolean,
 }
 
 const Text = styled.p`
@@ -29,6 +31,10 @@ const UploadModalView = (uploadModalProps: UploadModalProps) => {
     toggle,
     isOpen,
     upload,
+    isUploadButtonDisabled,
+    buttonText,
+    onUsernameUpdate,
+    onPicUrlUpdate,
   } = uploadModalProps;
 
   return (
@@ -45,7 +51,7 @@ const UploadModalView = (uploadModalProps: UploadModalProps) => {
         </Box>
         <Box width={1} mb={3}>
           <Input
-            onChange={() => {}}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onPicUrlUpdate(e)}
             placeholder="https://website.com/my-pic"
             block
           />
@@ -57,7 +63,7 @@ const UploadModalView = (uploadModalProps: UploadModalProps) => {
         </Box>
         <Box width={1} mb={4}>
           <Input
-            onChange={() => {}}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onUsernameUpdate(e)}
             placeholder="Your username"
             block
           />
@@ -66,8 +72,9 @@ const UploadModalView = (uploadModalProps: UploadModalProps) => {
           <Button
             onClick={upload}
             block
+            disabled={isUploadButtonDisabled}
           >
-            Upload
+            {buttonText}
           </Button>
         </Box>
       </Flex>

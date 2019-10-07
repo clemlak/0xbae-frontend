@@ -11,8 +11,6 @@ import {
   getBalanceOf,
 } from '../utils/utils';
 
-import tokens from '../utils/tokens';
-
 interface Ethereum {
   selectedAddress: string,
   autoRefreshOnNetworkChange?: boolean,
@@ -87,11 +85,17 @@ const Web3Loader = () => {
         const accounts = await web3.eth.getAccounts();
         const address = accounts[0];
 
-        // const networkId: number = await web3.eth.net.getId() as number;
-
         dispatch({
           target: 'address',
           value: address,
+          type: 'set',
+        });
+
+        const networkId: number = await web3.eth.net.getId();
+
+        dispatch({
+          target: 'networkId',
+          value: networkId,
           type: 'set',
         });
 

@@ -13,5 +13,7 @@ storiesOf('UploadModal', module)
       onUsernameUpdate={(val: string) => action(val)}
       onPicUrlUpdate={(val: string) => action(val)}
       upload={action('Upload')}
+      buttonText="Upload"
+      isUploadButtonDisabled={false}
     />
   ));
