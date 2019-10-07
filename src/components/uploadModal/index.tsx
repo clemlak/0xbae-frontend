@@ -96,6 +96,7 @@ async function upload(
       headers: {
         Accept: 'application/json',
         'Content-type': 'application/json',
+        Origin: 'https://0xbae.gq/',
       },
       body: JSON.stringify({
         url,
