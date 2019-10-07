@@ -42,6 +42,7 @@ const NavItem = styled(Box)`
 const NavLink = styled(Router.NavLink)`
   font-family: 'Nunito Sans';
   color: ${(props) => props.theme.colors.main};
+  text-decoration: none;
 `;
 
 const DrawerButton = styled(Box)`
