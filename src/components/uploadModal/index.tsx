@@ -96,6 +96,7 @@ async function upload(
       headers: {
         Accept: 'application/json',
         'Content-type': 'application/json',
+        origin: 'https://0xbae.netlify.com',
       },
       body: JSON.stringify({
         url,
