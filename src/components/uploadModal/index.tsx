@@ -97,7 +97,6 @@ async function upload(
         Accept: 'application/json',
         'Content-type': 'application/json',
       },
-      mode: 'cors',
       body: JSON.stringify({
         url,
         model: username,
