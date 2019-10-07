@@ -147,11 +147,15 @@ async function tip(
   if (isReady) {
     setTxState('pending');
 
+    // const networkId: number = await web3.eth.net.getId() as number;
+    // const tokenAddress: string = token === 'DAI' ?
+    const tokenAddress: string = '0x2cD829003d746E57118a6153BdFa71039f0b8d78';
+
     try {
       await sendTokens(
         web3,
         from,
-        token,
+        tokenAddress,
         tipAmount,
         to,
       );

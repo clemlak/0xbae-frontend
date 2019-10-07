@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 interface InputProps {
-  large?: boolean,
   block?: boolean,
   value?: number,
   placeholder?: string,
@@ -13,22 +12,28 @@ const InputStyled = styled.input<InputProps>`
   font-family: 'Nunito Sans', sans-serif;
   width: ${(props) => props.block && '100%'};
   box-sizing: border-box;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  height: 2.5rem;
-  color: #000;
-  font-size: ${(props) => (props.large ? '45px' : '14px')};
-  font-weight: ${(props) => (props.large ? '700' : '400')};
-  line-height: 24px;
-  border-radius: 6px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #000;
-  background: #fff;
-  border: ${(props) => (props.large && 'none')};
+  padding: 10px 10px;
+  color: ${(props) => props.theme.colors.black};
+  font-size: 14px;
+  font-weight: 400;
+  background: none;
+  border: ${(props) => `1.5px solid ${props.theme.colors.main}`};
+  border-radius: 0px;
+  caret-color: ${(props) => props.theme.colors.main};
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  transition: all 0.2s ease-in-out 0s;
+
+  &::placeholder {
+    color: ${(props) => props.theme.colors.grey4};
+  }
 
   &:focus {
     outline: none;
+    transition: all 0.2s ease-in-out 0s;
+    border-color: ${(props) => props.theme.colors.main};
+    border-radius: 15px;
   }
 `;
 
@@ -38,7 +43,6 @@ const Input = (inputProps: InputProps) => {
     onChange,
     placeholder,
     block = false,
-    large = false,
   } = inputProps;
 
   return (
@@ -47,7 +51,6 @@ const Input = (inputProps: InputProps) => {
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
       placeholder={placeholder}
       block={block}
-      large={large}
     />
   );
 };

@@ -21,7 +21,7 @@ const Content = () => {
 
   React.useEffect(() => {
     async function fetchPosts() {
-      const res = await fetch('http://localhost:3001');
+      const res = await fetch('https://0xbae-backend.clemlak.now.sh');
       const json = await res.json();
       setPosts(json);
     }
