@@ -15,5 +15,7 @@ storiesOf('UploadModal', module)
       upload={action('Upload')}
       buttonText="Upload"
       isUploadButtonDisabled={false}
+      username="Jasper"
+      picUrl="https://my-website.com"
     />
   ));

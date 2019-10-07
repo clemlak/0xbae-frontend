@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface InputProps {
   block?: boolean,
-  value?: number,
+  value?: string,
   placeholder?: string,
   onChange: Function,
 }

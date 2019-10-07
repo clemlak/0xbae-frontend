@@ -17,6 +17,8 @@ interface UploadModalProps {
   upload: Function,
   buttonText: string,
   isUploadButtonDisabled: boolean,
+  username: string,
+  picUrl: string,
 }
 
 const Text = styled.p`
@@ -35,6 +37,8 @@ const UploadModalView = (uploadModalProps: UploadModalProps) => {
     buttonText,
     onUsernameUpdate,
     onPicUrlUpdate,
+    username,
+    picUrl,
   } = uploadModalProps;
 
   return (
@@ -51,6 +55,7 @@ const UploadModalView = (uploadModalProps: UploadModalProps) => {
         </Box>
         <Box width={1} mb={3}>
           <Input
+            value={picUrl}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => onPicUrlUpdate(e)}
             placeholder="https://website.com/my-pic"
             block
@@ -63,6 +68,7 @@ const UploadModalView = (uploadModalProps: UploadModalProps) => {
         </Box>
         <Box width={1} mb={4}>
           <Input
+            value={username}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => onUsernameUpdate(e)}
             placeholder="Your username"
             block

@@ -159,6 +159,8 @@ const UploadModal = (uploadModalProps: UploadModalProps) => {
         setUploadStatus,
         toggle,
       )}
+      picUrl={picUrl}
+      username={username}
       onPicUrlUpdate={(val: string) => setPicUrl(val)}
       onUsernameUpdate={(val: string) => setUsername(val)}
       buttonText={getUploadButtonText(
