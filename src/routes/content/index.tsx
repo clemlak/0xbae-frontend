@@ -22,7 +22,7 @@ const Content = () => {
 
   React.useEffect(() => {
     async function fetchPosts() {
-      const res = await fetch('https://0xbae-backend.clemlak.now.sh');
+      const res = await fetch('https://0xbae-backend.clemlak.now.sh/posts');
       const json = await res.json();
       setPosts(json);
     }
