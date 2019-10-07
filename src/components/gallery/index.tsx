@@ -10,9 +10,10 @@ interface GalleryProps {
 }
 
 interface Post {
-  src: string,
+  url: string,
   model: string,
-  address: string
+  address: string,
+  _id: string,
 }
 
 const GalleryStyled = styled.div`
@@ -112,11 +113,11 @@ const Gallery = (galleryProps: GalleryProps) => {
       />
       {posts.length > 0 ? (
         posts.map((post: Post) => (
-          <GalleryItem key={post.model}>
-            <GalleryImage src={post.src} alt={post.model} />
+          <GalleryItem key={post._id}>
+            <GalleryImage src={post.url} alt={post.model} />
             <GalleryItemInfo>
               <ButtonWrapper>
-                <Button onClick={() => handleViewClick(post.src)} secondary>
+                <Button onClick={() => handleViewClick(post.url)} secondary>
                   View
                 </Button>
               </ButtonWrapper>

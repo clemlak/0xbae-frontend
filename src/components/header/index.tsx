@@ -6,6 +6,7 @@ import {
 import styled from 'styled-components';
 
 import Button from '../button';
+import UploadModal from '../uploadModal';
 
 const Logo = styled.h1`
   font-family: 'Nunito Sans';
@@ -19,23 +20,33 @@ const Navbar = styled(Box)`
   align-items: center;
 `;
 
-const Header = () => (
-  <Flex mx={[1, 3, 5]} mt={2} mb={[1, 2, 3]} flexWrap="wrap">
-    <Box width={1 / 2}>
-      <Logo>
-        <span role="img" aria-label="logo">
-          🍑 0xbae
-        </span>
-      </Logo>
-    </Box>
-    <Navbar width={1 / 2}>
-      <Button
-        onClick={() => {}}
-      >
-        Upload
-      </Button>
-    </Navbar>
-  </Flex>
-);
+const Header = () => {
+  const [isUploadModalOpen, toggleUploadModal] = React.useState<boolean>(false);
+
+  return (
+    <>
+      <UploadModal
+        toggle={() => toggleUploadModal(!toggleUploadModal)}
+        isOpen={isUploadModalOpen}
+      />
+      <Flex mx={[1, 3, 5]} mt={2} mb={[1, 2, 3]} flexWrap="wrap">
+        <Box width={1 / 2}>
+          <Logo>
+            <span role="img" aria-label="logo">
+              🍑 0xbae
+            </span>
+          </Logo>
+        </Box>
+        <Navbar width={1 / 2}>
+          <Button
+            onClick={() => toggleUploadModal(!isUploadModalOpen)}
+          >
+            Upload
+          </Button>
+        </Navbar>
+      </Flex>
+    </>
+  );
+};
 
 export default Header;

@@ -39,7 +39,6 @@ async function sendTokens(web3: any, from: string, token: string, amount: number
   );
 }
 
-
 export {
   getBalanceOf,
   sendTokens,

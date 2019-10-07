@@ -11,9 +11,10 @@ interface ImageInterface {
 }
 
 interface Post {
-  src: string,
+  url: string,
   model: string,
-  address: string
+  address: string,
+  _id: string,
 }
 
 const Content = () => {
