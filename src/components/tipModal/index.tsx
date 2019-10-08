@@ -157,13 +157,11 @@ async function tip(
   if (isReady) {
     setTxState('pending');
 
-    const tokenAddress: string = '0x2cD829003d746E57118a6153BdFa71039f0b8d78';
-
     try {
       await sendTokens(
         web3,
         from,
-        tokenAddress,
+        token,
         tipAmount,
         to,
       );
